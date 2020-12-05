@@ -1,11 +1,10 @@
-import _ from 'lodash';
+import React, { useState } from "react";
+import { render } from "react-dom";
 
-function component() {
-  const element = document.createElement('div');
+function App() {
+    const [state, setState] = useState("CLICK ME");
 
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  return element;
+    return <button onClick={() => setState("CLICKED")}>{state}</button>;
 }
 
-document.body.appendChild(component());
+render(<App />, document.getElementById("root"));
