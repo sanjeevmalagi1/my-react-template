@@ -1,5 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 const path = require("path");
 const { merge } = require('webpack-merge');
 
@@ -18,14 +20,25 @@ const baseConfig = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ["babel-loader"]
-      }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader", "postcss-loader",
+          ],
+      },
     ]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', "src", "index.html")
-    })
+    }),
+    new MiniCssExtractPlugin({
+      filename: "styles.css",
+      chunkFilename: "styles.css"
+    }),
   ]
 };
 
