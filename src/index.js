@@ -1,5 +1,9 @@
 import React from "react";
 import { render } from "react-dom";
+
+import { Provider } from 'react-redux'
+import { configureStore } from "@reduxjs/toolkit";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,9 +13,9 @@ import {
 
 import BasicLayout from "./layouts/Basic";
 
+import rootReducer from './rootReducer';
 
 import './index.css';
-import 'my-components';
 
 const SecondScreen = () => {
     return (
@@ -29,20 +33,22 @@ const Home = () => {
     );
 };
 
+const store = configureStore({
+   reducer: rootReducer,
+});
+
 function App() {
     return (
-        <Router>
-            <BasicLayout>
-                <Switch>
-                    <Route path="/second">
-                        <SecondScreen />
-                    </Route>
-                    <Route path="/">
-                        <Home />
-                    </Route>
-                </Switch>
-            </BasicLayout>
-        </Router>
+        <Provider store={store}>
+            <Router>
+                <BasicLayout>
+                    <Switch>
+                        <Route path="/second" component={SecondScreen} />
+                        <Route path="/" component={Home} />
+                    </Switch>
+                </BasicLayout>
+            </Router>
+        </Provider>
     );
 }
 
