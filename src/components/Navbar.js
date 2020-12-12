@@ -1,13 +1,8 @@
 import React from "react";
 
-import {
-  Link
-} from "react-router-dom";
-
-import { Button } from "my-components";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-
   return (
     <nav className="">
       <div className="flex justify-between h-14 container mx-auto px-4">
@@ -20,7 +15,9 @@ const Navbar = () => {
           </li>
           <li className="flex items-center mx-5">
               <Link to="/second">About</Link>
-              <Button label="HI" />
+          </li>
+          <li className="flex items-center mx-5">
+              <button>Login</button>
           </li>
         </ul>  
       </div>
