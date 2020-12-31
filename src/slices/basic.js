@@ -5,10 +5,15 @@ const basicSlice = createSlice({
   initialState: {},
   reducers: {
     basicAction(state, action) {
-      return state;
+      return {
+        ...state,
+        ...action.payload
+      };
     }
   }
 });
+
+export const thunkAction = data => dispatch => dispatch(basicAction({ someData: data }))
 
 export const { basicAction } = basicSlice.actions;
 

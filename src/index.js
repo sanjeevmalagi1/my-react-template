@@ -1,19 +1,15 @@
 import React from "react";
 import { render } from "react-dom";
-
 import { Provider } from 'react-redux'
-import { configureStore } from "@reduxjs/toolkit";
-
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
-import BasicLayout from "./layouts/Basic";
+import store from './store'
 
-import rootReducer from './rootReducer';
+import Home from './containers/Home';
 
 import './index.css';
 
@@ -25,28 +21,14 @@ const SecondScreen = () => {
     );
 };
 
-const Home = () => {
-    return (
-        <div>
-            <p>Home page</p>
-        </div>
-    );
-};
-
-const store = configureStore({
-   reducer: rootReducer,
-});
-
 function App() {
     return (
         <Provider store={store}>
             <Router>
-                <BasicLayout>
-                    <Switch>
-                        <Route path="/second" component={SecondScreen} />
-                        <Route path="/" component={Home} />
-                    </Switch>
-                </BasicLayout>
+                <Switch>
+                    <Route path="/second" component={SecondScreen} />
+                    <Route path="/" component={Home} />
+                </Switch>
             </Router>
         </Provider>
     );
