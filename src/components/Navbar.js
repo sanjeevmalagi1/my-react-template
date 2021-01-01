@@ -13,12 +13,6 @@ const Navbar = () => {
           <li className="flex items-center mx-5">
               <Link to="/">Home</Link>
           </li>
-          <li className="flex items-center mx-5">
-              <Link to="/second">About</Link>
-          </li>
-          <li className="flex items-center mx-5">
-              <button>Login</button>
-          </li>
         </ul>  
       </div>
     </nav>
